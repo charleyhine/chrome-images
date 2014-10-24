@@ -20,7 +20,7 @@ var Popup = {
     this.sendMessage("get", "img", function(result) {
       $.each(result, function(index, image) {
         var img = $("<img>").attr("src", image['url']).attr("width", "100px").attr("height", "100px");
-				var link = $("<a>").attr("href", '/').attr("title", image['title']);
+				var link = $("<a>").attr("href", '/').attr("title", image['price'] + ' ' + image['title']);
 				link.html(img);
 				$("#result-box").append(link);
       });
