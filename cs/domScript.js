@@ -17,10 +17,13 @@ var DOMScript = {
         break;
       case "get":
         var list = [];
+				if (!window.location.origin)
+				     window.location.origin = window.location.protocol+"//"+window.location.host;
         $.each($(request.element), function(index, item) {
 					var src = $(item).attr("src")
 					var pat = /^https?:\/\//i;
-					if (!pat.test(src)){ src = document.URL + src; }
+					if (!pat.test(src))
+							src = window.location.origin + '/' + src;
           list.push(src);
         });
         sendResponse({result: list});
