@@ -17,12 +17,13 @@ var DOMScript = {
         break;
       case "get":
         var list = [];
+				var title = $("h1").text();
 				if (!window.location.origin){ window.location.origin = window.location.protocol+"//"+window.location.host; }
         $.each($(request.element), function(index, item) {
 					var src = $(item).attr("src")
 					var pat = /^https?:\/\//i;
 					if (!pat.test(src)){ src = window.location.origin + '/' + src; }
-					list.push(src);
+					list.push({url: src, title: title});
         });
         sendResponse({result: list});
     }

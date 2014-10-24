@@ -18,9 +18,11 @@ var Popup = {
   getImages: function() {
     $("#result-box").empty();
     this.sendMessage("get", "img", function(result) {
-      $.each(result, function(index, url) {
-        var img = $("<img>").attr("src", url).attr("width", "100px").attr("height", "100px");
-        $("#result-box").append(img);
+      $.each(result, function(index, image) {
+        var img = $("<img>").attr("src", image['url']).attr("width", "100px").attr("height", "100px");
+				var link = $("<a>").attr("href", '/').attr("title", image['title']);
+				link.html(img);
+				$("#result-box").append(link);
       });
     });
   },
