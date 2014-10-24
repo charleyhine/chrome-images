@@ -18,7 +18,10 @@ var DOMScript = {
       case "get":
         var list = [];
         $.each($(request.element), function(index, item) {
-          list.push($(item).attr("src"));
+					var src = $(item).attr("src")
+					var pat = /^https?:\/\//i;
+					if (!pat.test(src)){ src = document.URL + src; }
+          list.push(src);
         });
         sendResponse({result: list});
     }
